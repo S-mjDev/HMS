@@ -17,4 +17,6 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class PatientSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Patient
-        fields = ["url", "firstname", "midname", "lastname", "birthday", "medical_history"]
+        # expose the primary key so clients can see the record ID
+        fields = ["url", "id", "firstname", "midname", "lastname", "address", "birthday", "age", "consultation_date", "doctor", "medical_history"]
+

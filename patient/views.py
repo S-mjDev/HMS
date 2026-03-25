@@ -40,7 +40,7 @@ class PatientViewSet(viewsets.ModelViewSet):
     serializer_class = PatientSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-def user(APIView):
+def home(APIView):
         templates = loader.get_template("home.html")
         return HttpResponse(templates.render())
 

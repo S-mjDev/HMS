@@ -1,8 +1,13 @@
+from urllib.request import Request
+
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.models import Group, User
+from django.views import View
 from patient.models import Patient
 from rest_framework import permissions, viewsets
+from django.template import loader
+
 
 from patient.serializers import GroupSerializer, UserSerializer, PatientSerializer
 
@@ -34,3 +39,9 @@ class PatientViewSet(viewsets.ModelViewSet):
     queryset = Patient.objects.all().order_by("id")
     serializer_class = PatientSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+def user(APIView):
+        templates = loader.get_template("home.html")
+        return HttpResponse(templates.render())
+
+

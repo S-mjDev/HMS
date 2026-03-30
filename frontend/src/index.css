@@ -1,0 +1,55 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Ensure the <ul> itself is a horizontal flex container */
+.nav-links {
+  display: flex;
+  list-style-type: none; /* Remove bullet points */
+  margin: 0;
+  padding: 0;
+  gap: 20px; /* Adjust spacing between links */
+}
+
+/* Optional: Make the list items flex to center buttons if needed */
+.nav-links li {
+  display: inline-block;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between; /* Logo on left, links on right */
+  align-items: center;           /* Center items vertically */
+  padding: 10px 20px;
+}
+
+/* Align the logo content horizontally */
+.navbar .logo {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  gap: 10px;
+}
+
+/* Adjust the logo image size if it's too big */
+.navbar .logo img {
+  height: 40px;
+  width: auto;
+}
+
+img.logo {
+  height: 40px; /* Fixed height for the logo */
+  width: auto;  /* Maintain ratio */
+  display: block;
+  object-fit: contain;
+}
+

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { FormGroup } from 'reactstrap';
 
 function PatientRegistration() {
   const [formData, setFormData] = useState({
@@ -15,6 +16,8 @@ function PatientRegistration() {
   const [doctors, setDoctors] = useState([]);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
+
+
 
   useEffect(() => {
     // Fetch doctors for the dropdown
@@ -35,10 +38,40 @@ function PatientRegistration() {
     }));
   };
 
+  const checkDuplicate = async () => {
+    try {
+      // Build query parameters for duplicate check
+      const params = new URLSearchParams();
+      if (formData.firstname) params.append('firstname__iexact', formData.firstname.trim());
+      if (formData.lastname) params.append('lastname__iexact', formData.lastname.trim());
+      if (formData.midname) params.append('midname__iexact', formData.midname.trim());
+      if (formData.birthday) params.append('birthday', formData.birthday);
+
+      const response = await fetch(`http://localhost:8000/patient/?${params.toString()}`);
+      if (response.ok) {
+        const data = await response.json();
+        const patients = data.results || data || [];
+        return patients.length > 0;
+      }
+      return false;
+    } catch (error) {
+      console.error('Error checking for duplicates:', error);
+      return false; // Assume no duplicate if check fails
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setMessage('');
+
+    // Check for duplicates first
+    const isDuplicate = await checkDuplicate();
+    if (isDuplicate) {
+      setMessage('Error: A patient with the same name and birthday already exists in the database.');
+      setLoading(false);
+      return;
+    }
 
     // Prepare form data, converting doctor ID to URL if selected
     const submitData = {
@@ -84,6 +117,7 @@ function PatientRegistration() {
       <h2>Patient Registration</h2>
       {message && <p style={{ color: message.includes('Error') ? 'red' : 'green' }}>{message}</p>}
       <form onSubmit={handleSubmit}>
+        <FormGroup floating>
         <div style={{ marginBottom: '10px' }}>
           <label>First Name:</label>
           <input
@@ -195,6 +229,7 @@ function PatientRegistration() {
         >
           {loading ? 'Registering...' : 'Register Patient'}
         </button>
+        </FormGroup>
       </form>
     </div>
   );

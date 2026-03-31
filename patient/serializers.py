@@ -20,6 +20,7 @@ class PatientSerializer(serializers.HyperlinkedModelSerializer):
         # expose the primary key so clients can see the record ID
         fields = ["url", "id", "firstname", "midname", "lastname", "address", "birthday", "age", "consultation_date", "doctor", "medical_history"]
 
+<<<<<<< HEAD
     def validate(self, data):
         firstname = data.get("firstname")
         midname = data.get("midname")
@@ -50,3 +51,5 @@ class PatientSerializer(serializers.HyperlinkedModelSerializer):
 
         return data
 
+=======
+>>>>>>> 507d7d53ae00c78e08bb362c85ad854ae7affc73

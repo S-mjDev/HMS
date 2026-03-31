@@ -23,8 +23,11 @@ urlpatterns = [
     path("", include(router.urls)),
     path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
     path('admin/', admin.site.urls),
+<<<<<<< HEAD
     path('patient/', include('patient.urls')),
     path('doctor/', include('doctor.urls')),
     path('home/', include('patient.urls')),
     
+=======
+>>>>>>> 507d7d53ae00c78e08bb362c85ad854ae7affc73
 ]

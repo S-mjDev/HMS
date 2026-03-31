@@ -11,7 +11,10 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+<<<<<<< HEAD
 import os
+=======
+>>>>>>> 507d7d53ae00c78e08bb362c85ad854ae7affc73
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,12 +42,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+<<<<<<< HEAD
     'rest_framework.authtoken',
     'django_filters',
     'patient',
     'doctor',
     'search',
     'corsheaders',
+=======
+    'patient',
+    'doctor',
+>>>>>>> 507d7d53ae00c78e08bb362c85ad854ae7affc73
 ]
 
 MIDDLEWARE = [
@@ -55,11 +63,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+<<<<<<< HEAD
     'corsheaders.middleware.CorsMiddleware',
+=======
+>>>>>>> 507d7d53ae00c78e08bb362c85ad854ae7affc73
 ]
 
 ROOT_URLCONF = 'HMS.urls'
 
+<<<<<<< HEAD
 # White listing the localhost:3000 port
 # for React
 CORS_ORIGIN_WHITELIST = (
@@ -70,6 +82,12 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [BASE_DIR / 'templates'],
+=======
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],
+>>>>>>> 507d7d53ae00c78e08bb362c85ad854ae7affc73
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -90,19 +108,26 @@ WSGI_APPLICATION = 'HMS.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
+<<<<<<< HEAD
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+=======
+        'NAME': BASE_DIR / 'db.sqlite3',
+>>>>>>> 507d7d53ae00c78e08bb362c85ad854ae7affc73
     }
 }
 
 REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 10,
+<<<<<<< HEAD
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
     ],
     'DEFAULT_PARSER_CLASSES': [
         'rest_framework.parsers.JSONParser',
     ],
+=======
+>>>>>>> 507d7d53ae00c78e08bb362c85ad854ae7affc73
 }
 
 
@@ -141,5 +166,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 507d7d53ae00c78e08bb362c85ad854ae7affc73

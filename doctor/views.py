@@ -8,4 +8,8 @@ from rest_framework import permissions, viewsets
 class DoctorViewSet(viewsets.ModelViewSet):
     queryset = Doctor.objects.all().order_by("id")
     serializer_class = DoctorSerializer
+<<<<<<< HEAD
     permission_classes = []  # Temporarily remove authentication for development
+=======
+    permission_classes = [permissions.IsAuthenticated]
+>>>>>>> 507d7d53ae00c78e08bb362c85ad854ae7affc73

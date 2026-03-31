@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from urllib.request import Request
 
 from django.shortcuts import render, redirect
@@ -11,10 +12,18 @@ from rest_framework import permissions, viewsets
 from django.template import loader
 from django_filters.rest_framework import DjangoFilterBackend
 
+=======
+from django.shortcuts import render
+from django.http import HttpResponse
+from django.contrib.auth.models import Group, User
+from patient.models import Patient
+from rest_framework import permissions, viewsets
+>>>>>>> 507d7d53ae00c78e08bb362c85ad854ae7affc73
 
 from patient.serializers import GroupSerializer, UserSerializer, PatientSerializer
 
 
+<<<<<<< HEAD
 def register_patient(request):
     if request.method == "POST":
         form = PatientRegistrationForm(request.POST)
@@ -34,6 +43,8 @@ def patient_list(request):
     return render(request, "patient_list.html", {"patients": patients})
 
 
+=======
+>>>>>>> 507d7d53ae00c78e08bb362c85ad854ae7affc73
 class UserViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
@@ -60,6 +71,7 @@ class PatientViewSet(viewsets.ModelViewSet):
 
     queryset = Patient.objects.all().order_by("id")
     serializer_class = PatientSerializer
+<<<<<<< HEAD
     permission_classes = []  # Temporarily remove authentication for development
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['firstname', 'midname', 'lastname', 'birthday']
@@ -67,3 +79,6 @@ class PatientViewSet(viewsets.ModelViewSet):
 
 
 
+=======
+    permission_classes = [permissions.IsAuthenticated]
+>>>>>>> 507d7d53ae00c78e08bb362c85ad854ae7affc73

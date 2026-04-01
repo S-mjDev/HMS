@@ -10,6 +10,7 @@ from patient.forms import PatientRegistrationForm
 from rest_framework import permissions, viewsets
 from django.template import loader
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter
 
 
 from patient.serializers import GroupSerializer, UserSerializer, PatientSerializer
@@ -61,8 +62,9 @@ class PatientViewSet(viewsets.ModelViewSet):
     queryset = Patient.objects.all().order_by("id")
     serializer_class = PatientSerializer
     permission_classes = []  # Temporarily remove authentication for development
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend, SearchFilter]
     filterset_fields = ['firstname', 'midname', 'lastname', 'birthday']
+    search_fields = ['firstname', 'midname', 'lastname', 'address', 'medical_history']
 
 
 

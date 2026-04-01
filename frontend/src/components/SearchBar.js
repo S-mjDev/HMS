@@ -18,11 +18,10 @@ function SearchBar({ onSearch = () => {} }) {
 
   return (
     <form className="search-container" onSubmit={handleSubmit}>
-      <label htmlFor="search-input">Patients Name :</label>
       <input
         id="search-input"
         type="text"
-        placeholder="Search..."
+        placeholder="Search Patient Name..."
         value={input}
         onChange={handleChange}
       />

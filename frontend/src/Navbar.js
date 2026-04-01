@@ -4,7 +4,7 @@ function Navbar({ onPageChange }) {
   return (
     <div>
       <nav className="navbar">
-        <span><img src="./QPHN_LOGO.jpg" alt="QPHN Logo" className="logo" /> </span><NavbarBrand> Quezon Provincial Hospital Network-Bonpen (Catanauan)</NavbarBrand>
+        <span><img src="./QPHN_LOGO.jpg" alt="QPHN Logo" className="logo" /> </span><NavbarBrand><h1>Quezon Provincial Hospital Network-Bonpen (Catanauan)</h1> </NavbarBrand>
           
       <ReactstrapNavbar>
 

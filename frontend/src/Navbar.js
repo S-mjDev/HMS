@@ -4,9 +4,9 @@ function Navbar({ onPageChange }) {
   return (
     <div>
       <nav className="navbar">
-      <ReactstrapNavbar>
-        <span><img src="./QPHN_LOGO.jpg" alt="QPHN Logo" className="logo" /></span><NavbarBrand>QPHN-Bonpen (Catanauan)</NavbarBrand>
+        <span><img src="./QPHN_LOGO.jpg" alt="QPHN Logo" className="logo" /> </span><NavbarBrand> Quezon Provincial Hospital Network-Bonpen (Catanauan)</NavbarBrand>
           
+      <ReactstrapNavbar>
 
       <ul className="nav-links">
         <li><button onClick={() => onPageChange('home')}>Home</button></li>

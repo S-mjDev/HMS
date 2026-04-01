@@ -4,29 +4,31 @@ function SearchBar({ onSearch = () => {} }) {
   const [input, setInput] = useState("");
 
   const handleChange = (e) => {
-    const value = e.target.value;
-    setInput(value);
-    onSearch(value); // send data to parent
+    setInput(e.target.value);
   };
-  
+
   const handleSubmit = (event) => {
     event.preventDefault(); // Prevents page reload
-    alert(`Searching for: ${input}`);
+    const trimmed = input.trim();
+    if (trimmed.length === 0) {
+      return;
+    }
+    onSearch(trimmed);
   };
 
-  
-
   return (
-    <form onSubmit={handleSubmit}>
-    <div className="search-container">
-    <input
-      type="text"
-      placeholder="Search..."
-      value={input}
-      onChange={handleChange}
-    />
-     <button className="search-button" type="submit">Submit</button>
-    </div>
+    <form className="search-container" onSubmit={handleSubmit}>
+      <label htmlFor="search-input">Patients Name :</label>
+      <input
+        id="search-input"
+        type="text"
+        placeholder="Search..."
+        value={input}
+        onChange={handleChange}
+      />
+      <button className="search-button" type="submit">
+        🔍
+      </button>
     </form>
   );
 }

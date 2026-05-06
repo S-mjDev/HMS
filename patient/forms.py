@@ -18,6 +18,44 @@ class PatientRegistrationForm(forms.ModelForm):
             "doctor",
             "medical_history",
         ]
+        widgets = {
+            "firstname": forms.TextInput(attrs={
+                "class": "form-control",
+                "placeholder": "First name",
+            }),
+            "midname": forms.TextInput(attrs={
+                "class": "form-control",
+                "placeholder": "Middle name",
+            }),
+            "lastname": forms.TextInput(attrs={
+                "class": "form-control",
+                "placeholder": "Last name",
+            }),
+            "address": forms.TextInput(attrs={
+                "class": "form-control",
+                "placeholder": "Address",
+            }),
+            "birthday": forms.DateInput(attrs={
+                "class": "form-control",
+                "type": "date",
+            }),
+            "age": forms.NumberInput(attrs={
+                "class": "form-control",
+                "placeholder": "Age",
+            }),
+            "consultation_date": forms.DateInput(attrs={
+                "class": "form-control",
+                "type": "date",
+            }),
+            "doctor": forms.Select(attrs={
+                "class": "form-select",
+            }),
+            "medical_history": forms.Textarea(attrs={
+                "class": "form-control",
+                "rows": 4,
+                "placeholder": "Medical history or notes",
+            }),
+        }
 
     def clean(self):
         cleaned_data = super().clean()

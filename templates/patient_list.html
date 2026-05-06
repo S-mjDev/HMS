@@ -4,20 +4,57 @@
 {% block title %}Patient List{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <h2>Registered Patients</h2>
-    <a class="btn btn-primary mb-3" href="{% url 'patient_register' %}">Add New Patient</a>
-    {% if patients %}
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Birthday</th>
-                <th>Age</th>
-                <th>Doctor</th>
-            </tr>
-        </thead>
+<div class="container mt-5 patient-list-page">
+    <div class="card patient-list-card shadow-sm">
+        <div class="card-header patient-list-header">
+            <div>
+                <h2>Registered Patients</h2>
+                <p class="text-muted mb-0">Manage your patient records and access the latest registrations from one place.</p>
+            </div>
+            <a class="btn btn-primary" href="{% url 'patient_register' %}">Add New Patient</a>
+        </div>
+        <div class="card-body">
+            <form method="get" class="patient-list-filters">
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label for="search-query">Search</label>
+                        <input id="search-query" type="search" name="q" class="form-control" placeholder="Name, address, history" value="{{ request.GET.q }}">
+                    </div>
+                    <div class="filter-group">
+                        <label for="doctor-filter">Doctor</label>
+                        <select id="doctor-filter" name="doctor" class="form-select">
+                            <option value="">All doctors</option>
+                            {% for doc in doctors %}
+                                <option value="{{ doc.id }}" {% if request.GET.doctor == doc.id|stringformat:"s" %}selected{% endif %}>{{ doc }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="birthday-filter">Birthday</label>
+                        <input id="birthday-filter" type="date" name="birthday" class="form-control" value="{{ request.GET.birthday }}">
+                    </div>
+                    <div class="filter-group">
+                        <label for="consultation-filter">Consultation</label>
+                        <input id="consultation-filter" type="date" name="consultation_date" class="form-control" value="{{ request.GET.consultation_date }}">
+                    </div>
+                    <div class="filter-actions">
+                        <button type="submit" class="btn btn-secondary">Filter</button>
+                        <a href="{% url 'patient_list' %}" class="btn btn-link">Reset</a>
+                    </div>
+                </div>
+            </form>
+            {% if patients %}
+            <div class="table-responsive">
+                <table class="table patient-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Birthday</th>
+                            <th>Age</th>
+                            <th>Doctor</th>
+                        </tr>
+                    </thead>
         <tbody>
             {% for patient in patients %}
                 <tr>
@@ -29,9 +66,36 @@
                 </tr>
             {% endfor %}
         </tbody>
-    </table>
-    {% else %}
-        <p>No patients found yet.</p>
-    {% endif %}
+                </table>
+            </div>
+            {% else %}
+            <div class="empty-state">
+                {% with search=request.GET.q|default_if_none:'' doctor=request.GET.doctor|default_if_none:'' birthday=request.GET.birthday|default_if_none:'' consultation=request.GET.consultation_date|default_if_none:'' %}
+                    {% if search or doctor or birthday or consultation %}
+                        <p>
+                            No patients found for
+                            {% if search %}<strong>"{{ search }}"</strong>{% endif %}
+                            {% if doctor %}
+                                {% if search %} and {% endif %}
+                                <strong>Doctor: {{ selected_doctor_name|default:doctor }}</strong>
+                            {% endif %}
+                            {% if birthday %}
+                                {% if search or doctor %} and {% endif %}
+                                <strong>Birthday: {{ birthday }}</strong>
+                            {% endif %}
+                            {% if consultation %}
+                                {% if search or doctor or birthday %} and {% endif %}
+                                <strong>Consultation: {{ consultation }}</strong>
+                            {% endif %}
+                            .
+                        </p>
+                    {% else %}
+                        <p>No patients found yet.</p>
+                    {% endif %}
+                {% endwith %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
 </div>
 {% endblock %}

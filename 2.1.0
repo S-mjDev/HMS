@@ -1,0 +1,5 @@
+Collecting mysqlclient
+  Downloading mysqlclient-2.2.8-cp312-cp312-win_amd64.whl.metadata (5.2 kB)
+Downloading mysqlclient-2.2.8-cp312-cp312-win_amd64.whl (207 kB)
+Installing collected packages: mysqlclient
+Successfully installed mysqlclient-2.2.8
